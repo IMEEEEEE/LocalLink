@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main-container" id="main-container">
+        <div class="left-container" id="left-container">
+            <div class="date-container">
+                <p class="day-text" id="day-text">99</p>
+                <p class="week-text" id="week-text">ABCDEFGHI</p>
+            </div>
+            <div class="memo-container" id="memo-container">
+                <p class="memo-event">Event 1</p>
+                <p class="memo-event">Event 2</p>
+                <ul class="memo-list">
+                    <li class="memo-item">item 1</li>
+                    <li class="memo-item">item 2</li>
+                    <li class="memo-item">item 3</li>
+                    <li class="memo-item">item 4</li>
+                </ul>
+            </div>
+            <div class="weather-container">
+                <img src="icons/01d.png" class="weather-icon" id="weather-icon">
+                <p class="weather-state" id="weather-state"></p>
+                <p class="temperature-text" id="temperature-text"></p>
+                <p class="location-text" id="location-text"></p>
+                <svg class="weather-refresh-button" id="weather-refresh-button">
+                    <circle cx="1vh" cy="1vh" r="0.5vh" fill="white"></circle>
+                </svg>
+            </div>
+        </div>
+        <div class="right-container" id="right-container">
+            <div class="top-container" id="top-container">
+                <p class="year-text" id="year-text"></p>
+            </div>
+            <div class="calendar-container" id="calendar-container">
+                <div class="month-selector" id="month-selector">
+                    <div class="month-button">
+                        <p class="month-text">Jan</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Feb</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Mar</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Apr</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">May</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Jun</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Jul</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Aug</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Sep</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Oct</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Nov</p>
+                    </div>
+                    <div class="month-button">
+                        <p class="month-text">Dec</p>
+                    </div>
+                </div>
+                <div class="week-container" id="week-container">
+                    <div>
+                        <p>Mon</p>
+                    </div>
+                    <div>
+                        <p>Tue</p>
+                    </div>
+                    <div>
+                        <p>Wed</p>
+                    </div>
+                    <div>
+                        <p>Thr</p>
+                    </div>
+                    <div>
+                        <p>Fri</p>
+                    </div>
+                    <div>
+                        <p>Sat</p>
+                    </div>
+                    <div>
+                        <p>Sun</p>
+                    </div>
+                </div>
+                <div class="calendar-body-container" id="calendar-body-container">
+                    <table class="calendar-table" id="calendar-table">
+                        <tr>
+                            <td>
+                                <div class="numbers-container" id="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">00</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">01</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">02</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">03</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">04</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">05</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">06</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">10</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">11</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">12</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">13</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">14</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">15</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">16</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">20</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">21</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">22</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">23</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">24</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">25</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">26</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">30</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">31</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">32</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">33</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">34</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">35</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">36</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">40</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">41</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">42</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">43</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">44</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">45</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">46</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">50</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">51</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">52</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">53</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">54</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">55</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="numbers-container">
+                                    <div class="click-area"></div>
+                                    <img src="" class="game-logo">
+                                    <div class="holiday-indicator">
+                                        <p class="numbers">56</p>
+                                    </div>
+                                    <div class="event-indicator">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+
+</html>

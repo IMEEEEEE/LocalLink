@@ -1,0 +1,49 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "Memo Calendar displays a yearly calendar, memo markers, and weather.\r\n\r\nMemo setup: right-click the project, choose 'Open in Explorer', then create a memo file named for the current year, for example 'Memo-2026.txt'. Each line should use this format: month-day=type=text. Supported types are holiday, event, and item. Example: 1-1=holiday=New Year.\r\n\r\nWeather setup: run LocalLink, set your IPInfo and OpenWeather tokens there, then keep LocalLink running. Location, weather, and theme data are provided by LocalLink. Unit chooses Celsius or Fahrenheit.",
+	"file" : "Calendar.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"firstdayofweek" : 
+			{
+				"index" : 1,
+				"options" : 
+				[
+					{
+						"label" : "Monday",
+						"value" : "0"
+					},
+					{
+						"label" : "Sunday",
+						"value" : "1"
+					}
+				],
+				"order" : 101,
+				"text" : "First Day of Week",
+				"type" : "combo",
+				"value" : "0"
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0.7529411764705882 0.7529411764705882 0.7529411764705882"
+			}
+		}
+	},
+	"preview" : "preview.jpg",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"snapshotformat" : -1,
+	"snapshotoverlay" : "",
+	"tags" : [ "Technology" ],
+	"title" : "Memo Calendar",
+	"type" : "web",
+	"version" : 13,
+	"visibility" : "public",
+	"workshopid" : "3728860400",
+	"workshopurl" : "steam://url/CommunityFilePage/3728860400"
+}
