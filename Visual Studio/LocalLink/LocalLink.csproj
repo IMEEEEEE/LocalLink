@@ -1,0 +1,93 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>LocalLink</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <WinUISDKReferences>false</WinUISDKReferences>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <GenerateAppxPackageOnBuild>false</GenerateAppxPackageOnBuild>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.1.3" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ffmpeg\ffmpeg.exe;ffmpeg\LICENSE;ffmpeg\NOTICE.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="VerifyCameraDecoder" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildProjectDirectory)\ffmpeg\ffmpeg.exe')">
+    <Error Text="Camera decoder missing. Run powershell -ExecutionPolicy Bypass -File scripts/Get-FFmpeg.ps1 from the solution directory." />
+  </Target>
+
+  <!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <!-- Publish Properties -->
+  <PropertyGroup>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+  </PropertyGroup>
+
+  <Target Name="RemoveUnusedTransitiveAiReferences" BeforeTargets="GenerateBuildDependencyFile;CopyFilesToOutputDirectory">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths
+        Remove="@(ReferenceCopyLocalPaths)"
+        Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.Filename)').StartsWith('Microsoft.Windows.AI.'))
+          Or '%(ReferenceCopyLocalPaths.Filename)%(ReferenceCopyLocalPaths.Extension)' == 'Microsoft.ML.OnnxRuntime.dll'
+          Or '%(ReferenceCopyLocalPaths.Filename)%(ReferenceCopyLocalPaths.Extension)' == 'onnxruntime.dll'
+          Or $([System.String]::Copy('%(ReferenceCopyLocalPaths.Filename)').StartsWith('onnxruntime_providers'))
+          Or '%(ReferenceCopyLocalPaths.Filename)%(ReferenceCopyLocalPaths.Extension)' == 'Microsoft.Graphics.Imaging.Projection.dll'" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="RemoveUnusedTransitiveAiBuildArtifacts" AfterTargets="Build">
+    <ItemGroup>
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)Microsoft.ML.OnnxRuntime.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)onnxruntime.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)onnxruntime_providers*.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)Microsoft.Windows.AI*.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)Microsoft.Graphics.Imaging.Projection.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)DirectML.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)AppX\Microsoft.ML.OnnxRuntime.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)AppX\onnxruntime.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)AppX\onnxruntime_providers*.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)AppX\Microsoft.Windows.AI*.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)AppX\Microsoft.Graphics.Imaging.Projection.dll" />
+      <UnusedTransitiveAiBuildArtifacts Include="$(OutDir)AppX\DirectML.dll" />
+    </ItemGroup>
+    <Delete Files="@(UnusedTransitiveAiBuildArtifacts)" TreatErrorsAsWarnings="true" />
+  </Target>
+</Project>

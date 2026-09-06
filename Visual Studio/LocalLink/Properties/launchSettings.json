@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "LocalLink (Package)": {
+      "commandName": "MsixPackage",
+      "alwaysReinstallApp": false
+    },
+    "LocalLink (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
