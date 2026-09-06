@@ -1,0 +1,200 @@
+:root {
+    --page-bg: rgb(200, 200, 200);
+    --panel-bg: rgb(218, 78, 78);
+    --panel-shadow: 0vh 0vh 0.8vh 0.4vh rgb(0, 0, 0, 0.2);
+    --snap-color: rgba(218, 78, 78, 0.5);
+    --snap-bg: rgba(218, 78, 78, 0.1);
+    --primary-text: white;
+    --muted-text: rgba(255, 255, 255, 0.72);
+    --ghost-text: rgba(255, 255, 255, 0.1);
+    --time-offset-y: 0vh;
+    --colon-offset-y: 0em;
+    --colon-gap: 0.17em;
+    --grid-cell-w: calc(100vw / 9);
+    --grid-cell-h: 20vh;
+    --clock-col: 3;
+    --clock-row: 2;
+    --panel-inset: calc(1.2vh + 20px);
+    --breathe-extra: 0vh;
+}
+
+@font-face {
+    font-family: "ClockFace";
+    src: url("myClock.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--page-bg);
+    color: var(--primary-text);
+    font-family: "ClockFace", "Segoe UI Variable Display", "Segoe UI", sans-serif;
+    transition: background-color 0.25s ease;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.clock-shell {
+    position: fixed;
+    inset: 0;
+}
+
+.clock-panel {
+    position: absolute;
+    left: calc(var(--clock-col) * var(--grid-cell-w) + var(--panel-inset));
+    top: calc(var(--clock-row) * var(--grid-cell-h) + var(--panel-inset));
+    width: calc(var(--grid-cell-w) * 3 - var(--panel-inset) * 2);
+    height: calc(var(--grid-cell-h) - var(--panel-inset) * 2);
+    cursor: default;
+    user-select: none;
+    touch-action: none;
+    transition: left 0.18s ease, top 0.18s ease;
+}
+
+.clock-panel.placing {
+    cursor: grabbing;
+    transition: left 0.46s ease-in-out, top 0.46s ease-in-out;
+}
+
+.clock-face {
+    position: absolute;
+    inset: var(--breathe-extra);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 2.8vh 4vh;
+    border-radius: calc(3.5vh - var(--breathe-extra));
+    background: var(--panel-bg);
+    box-shadow: var(--panel-shadow);
+    opacity: 1;
+    overflow: hidden;
+    transition: inset 0.18s ease, border-radius 0.18s ease, opacity 0.12s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.clock-panel.placing .clock-face {
+    opacity: 0.58;
+    transition: opacity 0.12s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.snap-preview {
+    position: absolute;
+    left: calc(var(--snap-col, var(--clock-col)) * var(--grid-cell-w) + var(--panel-inset));
+    top: calc(var(--snap-row, var(--clock-row)) * var(--grid-cell-h) + var(--panel-inset));
+    width: calc(var(--grid-cell-w) * 3 - var(--panel-inset) * 2);
+    height: calc(var(--grid-cell-h) - var(--panel-inset) * 2);
+    border: 0.18vh solid var(--snap-color);
+    border-radius: 3.5vh;
+    background: var(--snap-bg);
+    box-shadow: inset 0 0 0 0.12vh var(--snap-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: left 0.16s ease-in-out, top 0.16s ease-in-out, opacity 0.16s ease-in-out;
+}
+
+.snap-preview.visible {
+    opacity: 1;
+}
+
+.time {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    max-width: calc(100% - 5vw);
+    height: 1em;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.035em;
+    color: var(--primary-text);
+    font-size: 9.8vh;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    transform: translate(-50%, calc(-50% + var(--time-offset-y)));
+}
+
+.digit {
+    position: relative;
+    display: inline-block;
+    width: 1ch;
+    height: 1em;
+    text-align: center;
+}
+
+.digit-ghost,
+.digit-value {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+
+.digit-ghost {
+    color: var(--ghost-text);
+}
+
+.digit-value {
+    color: var(--primary-text);
+}
+
+.time-separator {
+    width: 0.24em;
+    height: 1em;
+    display: inline-block;
+    position: relative;
+    align-self: center;
+    color: transparent;
+    transform: translateY(var(--colon-offset-y));
+}
+
+.time-separator::before,
+.time-separator::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 0.09em;
+    height: 0.09em;
+    border-radius: 50%;
+    background: var(--primary-text);
+    transform: translate(-50%, -50%);
+}
+
+.time-separator::before {
+    top: calc(50% - var(--colon-gap));
+}
+
+.time-separator::after {
+    top: calc(50% + var(--colon-gap));
+}
+
+
+@media (max-aspect-ratio: 1 / 1) {
+    .clock-face {
+        padding: 3.4vw;
+        border-radius: 7vw;
+    }
+
+    .time {
+        font-size: 8.8vw;
+    }
+
+    .snap-preview {
+        border-radius: 7vw;
+    }
+}

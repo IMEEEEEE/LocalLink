@@ -1,0 +1,23 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "Digital Clock. Theme, location, and weather are provided by LocalLink when it is running.",
+	"file" : "Calendar.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+		}
+	},
+	"preview" : "preview.jpg",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"snapshotformat" : -1,
+	"snapshotoverlay" : "",
+	"tags" : [ "Technology" ],
+	"title" : "Digital Clock",
+	"type" : "web",
+	"version" : 13,
+	"visibility" : "public",
+	"workshopid" : "3728860400",
+	"workshopurl" : "steam://url/CommunityFilePage/3728860400"
+}

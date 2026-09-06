@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="clock-shell" id="clock-shell">
+        <div class="snap-preview" id="snap-preview"></div>
+        <section class="clock-panel" id="clock-panel" aria-label="Digital clock">
+            <div class="clock-face">
+                <p class="time" id="time-text">
+                    <span class="digit"><span class="digit-ghost">8</span><span class="digit-value" id="hours-tens">0</span></span>
+                    <span class="digit"><span class="digit-ghost">8</span><span class="digit-value" id="hours-ones">0</span></span>
+                    <span class="time-separator">:</span>
+                    <span class="digit"><span class="digit-ghost">8</span><span class="digit-value" id="minutes-tens">0</span></span>
+                    <span class="digit"><span class="digit-ghost">8</span><span class="digit-value" id="minutes-ones">0</span></span>
+                    <span class="time-separator">:</span>
+                    <span class="digit"><span class="digit-ghost">8</span><span class="digit-value" id="seconds-tens">0</span></span>
+                    <span class="digit"><span class="digit-ghost">8</span><span class="digit-value" id="seconds-ones">0</span></span>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
